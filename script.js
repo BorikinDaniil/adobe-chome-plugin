@@ -4,6 +4,8 @@ let timer = null
 const onElementChange = (mutationList) => {
   const svgEl = sizeDrawer.children && sizeDrawer.children.length && sizeDrawer.children[0]
 
+  if (!svgEl) return
+
   for (let i = 0; i < svgEl.children.length; i++) {
     const prevEl = svgEl.children[i - 1]
     const el = svgEl.children.item(i)
