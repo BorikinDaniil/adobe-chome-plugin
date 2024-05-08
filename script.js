@@ -1,10 +1,17 @@
 let sizeDrawer = null
 let timer = null
+let observer = null
 
-const onElementChange = (mutationList) => {
-  const svgEl = sizeDrawer.children && sizeDrawer.children.length && sizeDrawer.children[0]
+const onElementChange = () => {
+  const svgEl = sizeDrawer.children && sizeDrawer.children.length && sizeDrawer.children.item(0)
 
-  if (!svgEl) return
+  if (!svgEl) {
+    observer.disconnect()
+    sizeDrawer = null
+    setObserver()
+
+    return
+  }
 
   for (let i = 0; i < svgEl.children.length; i++) {
     const prevEl = svgEl.children[i - 1]
@@ -52,7 +59,7 @@ const setObserver = () => {
 
   // Create an observer instance linked to the callback function
   const config = { childList: true, subtree: true };
-  const observer = new MutationObserver(onElementChange);
+  observer = new MutationObserver(onElementChange);
 
   // Start observing the target node for configured mutations
   observer.observe(svgEl, config);
