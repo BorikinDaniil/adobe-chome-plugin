@@ -1,0 +1,18 @@
+{
+  "name": "Adobe Styles",
+  "version": "1.0.0",
+  "description": "This is an extension to change adobe styles",
+  "manifest_version": 3,
+  "author": "Borikin D.",
+  "action": {
+    "default_popup": "index.html",
+    "default_title": "Adobe Styles"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*.xd.adobe.com/*"],
+      "css": ["adobe-styles.css"],
+      "js": ["script.js"]
+    }
+  ]
+}
