@@ -157,5 +157,11 @@ body {
 
 .color-picker {
 	margin-bottom: 12px;
+	display: flex;
+	align-items: center;
+}
+
+.color-picker input {
+	min-width: 50px;
 }
 
