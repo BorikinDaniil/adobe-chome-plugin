@@ -86,7 +86,7 @@ const onElementChange = (ignoreFormatted = false) => {
       const top = textElements.find(el => el.y === Math.max(...yCoords))
       const bottom = textElements.find(el => el.y === Math.min(...yCoords))
 
-      if (Math.abs(top.value - bottom.value) < 3 && top.value < 30 && top.value !== bottom.value) {
+      if (Math.abs(top.value - bottom.value) < 3 && Math.abs(top.value - bottom.value) > 0 && top.value < 30 && bottom.value < 30 && top.value !== bottom.value) {
         const topBudge = svgEl.children[top.index - 1]
         const bottomBudge = svgEl.children[bottom.index - 1]
 
@@ -101,7 +101,7 @@ const onElementChange = (ignoreFormatted = false) => {
 
       }
 
-      if (Math.abs(left.value - right.value) < 3 && left.value < 30 && top.value !== right.value) {
+      if (Math.abs(left.value - right.value) < 3 && Math.abs(left.value - right.value) > 0 && left.value < 30 && right.value < 30 && top.value !== right.value) {
         const leftBudge = svgEl.children[left.index - 1]
         const rightBudge = svgEl.children[right.index - 1]
 
