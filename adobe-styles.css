@@ -1,10 +1,4 @@
 div[data-auto="svgContainer"] text {
-	font-size: 16px !important;
 	font-weight: 600 !important;
 	letter-spacing: 1px !important;
-}
-
-div[data-auto="svgContainer"] rect[rx="8"] {
-	font-size: 16px !important;
-	font-weight: 600 !important;
 }

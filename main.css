@@ -1,0 +1,161 @@
+
+:root {
+	--background-gradient:  linear-gradient(0deg, rgba(255,215,0,1) 0%, rgba(0,87,184,1) 100%);;
+	--gray: #34495e;
+	--darkgray: #2c3e50;
+	--toggle-indicator-size: 24px;
+	--track-height: 30px;
+	--track-width: calc(24px * 2.5);
+	--highContrastModeSupport: solid 2px transparent;
+	--dark: #121943;
+	--mid: #5a72b5;
+	--light: #e5efe9;
+	--track-border: var(--mid);
+	--track-background: var(--light);
+	--focus-ring: 0px 0px 0px 2px var(--dark);
+	--speed: 0.25s;
+}
+select {
+	/* Reset Select */
+	appearance: none;
+	outline: 10px red;
+	border: 0;
+	box-shadow: none;
+	/* Personalize */
+	flex: 1;
+	padding: 0 1em;
+	color: #fff;
+	background-color: var(--darkgray);
+	background-image: none;
+	cursor: pointer;
+}
+/* Remove IE arrow */
+select::-ms-expand {
+	display: none;
+}
+/* Custom Select wrapper */
+.select {
+	position: relative;
+	display: flex;
+	width: 20em;
+	height: 3em;
+	margin-bottom: 12px;
+	overflow: hidden;
+	border-radius: 8px
+}
+/* Arrow */
+.select::after {
+	content: '\25BC';
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 1em;
+	background-color: #34495e;
+	transition: .25s all ease;
+	pointer-events: none;
+	border-radius: 8px
+}
+/* Transition */
+.select:hover::after {
+	color: #f39c12;
+}
+
+/* Other styles*/
+body {
+	color: #000;
+	margin: 0;
+	background-color: var(--light);
+	padding: 0 24px 24px 24px;
+	border: 2px solid var(--dark);
+}
+
+.select-label,
+.checkbox-label,
+.toggle-label {
+	margin: 4px;
+	font-size: 12px;
+	font-weight: 600;
+}
+
+   .toggle {
+	   align-items: center;
+	   border-radius: 100px;
+	   display: flex;
+	   font-weight: 700;
+	   margin-bottom: 16px;
+	   
+	   &:last-of-type {
+		   margin: 0;
+	   }
+   }
+   
+.toggle__input {
+	clip: rect(0 0 0 0);
+	clip-path: inset(50%);
+	height: 1px;
+	overflow: hidden;
+	position: absolute;
+	white-space: nowrap;
+	width: 1px;
+	
+&:not([disabled]):active + .toggle-track,
+&:not([disabled]):focus + .toggle-track {
+	border: 1px solid transparent;
+	box-shadow: var(--focus-ring);
+}
+	
+	&:disabled + .toggle-track {
+		cursor: not-allowed;
+		opacity: 0.7;
+	}
+}
+
+.toggle-track {
+	background: var(--track-background);
+	border: 1px solid var(--track-border);
+	border-radius: 100px;
+	cursor: pointer;
+	display: flex;
+	height: var(--track-height);
+	margin-right: 12px;
+	position: relative;
+	width: var(--track-width);
+}
+
+.toggle-indicator {
+	align-items: center;
+	background: var(--dark);
+	border-radius: var(--toggle-indicator-size);
+	bottom: 2px;
+	display: flex;
+	height: var(--toggle-indicator-size);
+	justify-content: center;
+	left: 2px;
+	outline: var(--highContrastModeSupport);
+	position: absolute;
+	transition: var(--speed);
+	width: var(--toggle-indicator-size);
+}
+
+.checkMark {
+ fill: #fff;
+ height: 20px;
+ width: 20px;
+ opacity: 0;
+ transition: opacity var(--speed) ease-in-out;
+}
+
+.toggle__input:checked + .toggle-track .toggle-indicator {
+	background: var(--dark);
+	transform: translateX(calc(var(--track-width) - var(--track-height)));
+	
+	.checkMark {
+		opacity: 1;
+		transition: opacity var(--speed) ease-in-out;
+	}
+}
+
+.color-picker {
+	margin-bottom: 12px;
+}
+

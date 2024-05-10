@@ -5,12 +5,53 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
     <title>Adobe Styles</title>
+    <script defer type="module" src="settings.js"></script>
 </head>
 
 <body>
+<h1>Styles settings</h1>
 
+<h3>General styles</h3>
+<div class="select-label">Font size</div>
+<div class="select">
+    <select id="size-select">
+        <option value="14">14px</option>
+        <option value="15">15px</option>
+        <option value="16">16px</option>
+        <option value="17">17px</option>
+        <option value="18">18px</option>
+    </select>
+</div>
+<label class="toggle" for="toggle-input">
+    <input type="checkbox" class="toggle__input" id="toggle-input" />
+    <span class="toggle-track">
+				<span class="toggle-indicator">
+					<span class="checkMark">
+						<svg viewBox="0 0 24 24" id="ghq-svg-check" role="presentation" aria-hidden="true">
+							<path d="M9.86 18a1 1 0 01-.73-.32l-4.86-5.17a1.001 1.001 0 011.46-1.37l4.12 4.39 8.41-9.2a1 1 0 111.48 1.34l-9.14 10a1 1 0 01-.73.33h-.01z"></path>
+						</svg>
+					</span>
+				</span>
+			</span>
+    Enable tips
+</label>
+
+<h3>Colors styles</h3>
+<div class="color-picker">
+    <input type="color" id="common-color" name="commonColor" />
+    <label class="toggle-label" for="common-color">Common Color</label>
+</div>
+
+<div class="color-picker">
+    <input type="color" id="warning-color" name="warningColor" />
+    <label class="toggle-label" for="warning-color">Warnings Color</label>
+</div>
+
+<div class="color-picker">
+    <input type="color" id="error-color" name="errorColor" />
+    <label class="toggle-label" for="error-color">Errors Color</label>
+</div>
 </body>
-<script src="script.js"></script>
-
 </html>

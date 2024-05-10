@@ -4,6 +4,16 @@
   "description": "This is an extension to change adobe styles",
   "manifest_version": 3,
   "author": "Borikin D.",
+  "permissions": [
+    "activeTab",
+    "contextMenus",
+    "storage",
+    "tabs"
+  ],
+  "background": {
+    "service_worker": "service_worker.js",
+    "type": "module"
+  },
   "action": {
     "default_popup": "index.html",
     "default_title": "Adobe Styles"
