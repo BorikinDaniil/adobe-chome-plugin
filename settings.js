@@ -30,7 +30,7 @@ const addSelectListeners = () => {
   const warningColorSelect = document.getElementById('warning-color');
   const errorColorSelect = document.getElementById('error-color');
 
-  chrome.storage.local.get(["fontSize", "isTipsEnable"], (storage) => {
+  chrome.storage.local.get(["fontSize", "isTipsEnable", "commonColor", "warningColor", "errorColor"], (storage) => {
     fontSize = typeof storage.fontSize === 'string' && storage.fontSize || defaultFontSize
     const isTipsEnable = typeof storage.isTipsEnable === 'string' && storage.isTipsEnable === 'true'
     const commonColor = typeof storage.commonColor === 'string' && storage.commonColor || defaultCommonColor
