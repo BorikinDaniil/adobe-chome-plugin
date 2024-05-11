@@ -4,6 +4,7 @@ const defaultFontSize = '16'
 const defaultCommonColor = '#ff4aff'
 const defaultErrorColor = '#f60a27'
 const defaultWarningColor = '#e1cd3f'
+const defaultTextColor = '#ffffff'
 
 const onSizeChange = e => {
   const { value } = e.target;
@@ -29,13 +30,15 @@ const addSelectListeners = () => {
   const commonColorSelect = document.getElementById('common-color');
   const warningColorSelect = document.getElementById('warning-color');
   const errorColorSelect = document.getElementById('error-color');
+  const textColorSelect = document.getElementById('text-color');
 
-  chrome.storage.local.get(["fontSize", "isTipsEnable", "commonColor", "warningColor", "errorColor"], (storage) => {
+  chrome.storage.local.get(["fontSize", "isTipsEnable", "commonColor", "warningColor", "errorColor", "textColor"], (storage) => {
     fontSize = typeof storage.fontSize === 'string' && storage.fontSize || defaultFontSize
     const isTipsEnable = typeof storage.isTipsEnable === 'string' && storage.isTipsEnable === 'true'
     const commonColor = typeof storage.commonColor === 'string' && storage.commonColor || defaultCommonColor
     const warningColor = typeof storage.warningColor === 'string' && storage.warningColor || defaultWarningColor
     const errorColor = typeof storage.errorColor === 'string' && storage.errorColor || defaultErrorColor
+    const textColor = typeof storage.textColor === 'string' && storage.textColor || defaultTextColor
 
     if (select) select.value = fontSize
 
@@ -46,6 +49,8 @@ const addSelectListeners = () => {
     if (warningColorSelect) warningColorSelect.value = warningColor
 
     if (errorColorSelect) errorColorSelect.value = errorColor
+
+    if (textColorSelect) textColorSelect.value = textColor
   });
 
   if (select) select.addEventListener('change', onSizeChange)
@@ -57,6 +62,8 @@ const addSelectListeners = () => {
   if (warningColorSelect) warningColorSelect.addEventListener('change', onColorChange)
 
   if (errorColorSelect) errorColorSelect.addEventListener('change', onColorChange)
+
+  if (textColorSelect) textColorSelect.addEventListener('change', onColorChange)
 }
 
 

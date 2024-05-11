@@ -7,6 +7,7 @@ let fontSize = '16'
 let isTipsEnable = false
 let errorColor = '#f60a27'
 let warningColor = '#e1cd3f'
+let textColor = '#ffffff'
 
 const onElementChange = (ignoreFormatted = false) => {
   const svgEl = sizeDrawer.children && sizeDrawer.children.length && sizeDrawer.children.item(0)
@@ -27,11 +28,14 @@ const onElementChange = (ignoreFormatted = false) => {
   for (let i = 0; i < svgEl.children.length; i++) {
     const prevEl = svgEl.children[i - 1]
     const el = svgEl.children.item(i)
+    const elTag = el.tagName
     const isTextElement = el.tagName === 'text'
 
 
     if (isTextElement && el.textContent) {
       el.style.setProperty("font-size", resultFontSize)
+      el.style.setProperty("fill", textColor)
+
       const x = el.x.baseVal[0].value
       const y = el.y.baseVal[0].value
 
@@ -75,6 +79,10 @@ const onElementChange = (ignoreFormatted = false) => {
         el.defaultX = x.toString()
         el.defaultY = y.toString()
       }
+    }
+
+    if ((elTag === 'rect' || elTag === 'path') && (!el.ry || el.ry.baseVal.value !== 8)) {
+      el.setAttribute('stroke', defaultColor)
     }
 
     if (i === svgEl.children.length - 1 && textElements.length === 4) {
@@ -153,19 +161,22 @@ const setStorageListeners = () => {
 
       if (e.errorColor && e.errorColor.newValue) errorColor = e.errorColor.newValue
 
+      if (e.textColor && e.textColor.newValue) textColor = e.textColor.newValue
+
       onElementChange(true)
     }
   )
 }
 
 const getStorageValue = () => {
-  chrome.storage.local.get(["fontSize", "isTipsEnable", "commonColor", "warningColor", "errorColor"], (storage) => {
+  chrome.storage.local.get(["fontSize", "isTipsEnable", "commonColor", "warningColor", "errorColor", "textColor"], (storage) => {
     fontSize = storage.fontSize || defaultFontSize
     isTipsEnable = storage.isTipsEnable === "true"
 
     if (storage.commonColor) defaultColor = storage.commonColor
     if (storage.warningColor) warningColor = storage.warningColor
     if (storage.errorColor) errorColor = storage.errorColor
+    if (storage.errorColor) textColor = storage.textColor
   });
 }
 
