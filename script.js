@@ -2,12 +2,16 @@ let sizeDrawer = null
 let timer = null
 let observer = null
 const defaultFontSize = '16'
-let defaultColor = '#ff4aff'
-let fontSize = '16'
+let defaultCommonColor = '#ff4aff'
+let defaultErrorColor = '#f60a27'
+let defaultWarningColor = '#e1cd3f'
+let defaultTextColor = '#ffffff'
+let defaultColor = defaultCommonColor
+let errorColor = defaultErrorColor
+let warningColor = defaultWarningColor
+let textColor = defaultTextColor
+let fontSize = defaultFontSize
 let isTipsEnable = false
-let errorColor = '#f60a27'
-let warningColor = '#e1cd3f'
-let textColor = '#ffffff'
 
 const onElementChange = (ignoreFormatted = false) => {
   const svgEl = sizeDrawer.children && sizeDrawer.children.length && sizeDrawer.children.item(0)
@@ -151,17 +155,17 @@ const setObserver = () => {
 const setStorageListeners = () => {
   chrome.storage.local.onChanged.addListener(
     e => {
-      if (e.fontSize) fontSize = e.fontSize.newValue
+      if (e.fontSize) fontSize = e.fontSize.newValue || defaultFontSize
 
       if (e.isTipsEnable) isTipsEnable = e.isTipsEnable.newValue === "true"
 
-      if (e.commonColor && e.commonColor.newValue) defaultColor = e.commonColor.newValue
+      if (e.commonColor) defaultColor = e.commonColor.newValue || defaultCommonColor
 
-      if (e.warningColor && e.warningColor.newValue) warningColor = e.warningColor.newValue
+      if (e.warningColor) warningColor = e.warningColor.newValue || defaultWarningColor
 
-      if (e.errorColor && e.errorColor.newValue) errorColor = e.errorColor.newValue
+      if (e.errorColor) errorColor = e.errorColor.newValue || defaultErrorColor
 
-      if (e.textColor && e.textColor.newValue) textColor = e.textColor.newValue
+      if (e.textColor) textColor = e.textColor.newValue || defaultTextColor
 
       onElementChange(true)
     }
@@ -173,23 +177,25 @@ const getStorageValue = () => {
     fontSize = storage.fontSize || defaultFontSize
     isTipsEnable = storage.isTipsEnable === "true"
 
-    if (storage.commonColor) defaultColor = storage.commonColor
-    if (storage.warningColor) warningColor = storage.warningColor
-    if (storage.errorColor) errorColor = storage.errorColor
-    if (storage.errorColor) textColor = storage.textColor
+    if (storage.commonColor) defaultColor = storage.commonColor || defaultCommonColor
+    if (storage.warningColor) warningColor = storage.warningColor || defaultWarningColor
+    if (storage.errorColor) errorColor = storage.errorColor || defaultErrorColor
+    if (storage.errorColor) textColor = storage.textColor || defaultTextColor
   });
+}
+
+const initScript = () => {
+  setObserver()
+  setStorageListeners()
+  getStorageValue()
 }
 
 const init = () => {
   if (document.readyState !== "loading") {
-    setTimeout(() => setObserver(), 0); // Or setTimeout(onReady, 0); if you want it consistently async
-    setStorageListeners()
-    getStorageValue()
+    setTimeout(() => initScript(), 0)
   } else {
-    document.addEventListener("DOMContentLoaded", setObserver);
-    setStorageListeners()
-    getStorageValue()
+    document.addEventListener("DOMContentLoaded", () => initScript())
   }
 }
 
-init();
+init()

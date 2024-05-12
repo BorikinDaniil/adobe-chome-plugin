@@ -49,7 +49,7 @@ select::-ms-expand {
 	position: absolute;
 	top: 0;
 	right: 0;
-	padding: 1em;
+	padding: 14px;
 	background-color: #34495e;
 	transition: .25s all ease;
 	pointer-events: none;
@@ -72,22 +72,26 @@ body {
 .select-label,
 .checkbox-label,
 .toggle-label {
-	margin: 4px;
+	margin-left: 8px;
 	font-size: 12px;
 	font-weight: 600;
 }
 
-   .toggle {
-	   align-items: center;
-	   border-radius: 100px;
-	   display: flex;
-	   font-weight: 700;
-	   margin-bottom: 16px;
-	   
-	   &:last-of-type {
-		   margin: 0;
-	   }
+.select-label {
+	margin-bottom: 4px;
+}
+
+ .toggle {
+   align-items: center;
+   border-radius: 100px;
+   display: flex;
+   font-weight: 700;
+   margin-bottom: 16px;
+   
+   &:last-of-type {
+	   margin: 0;
    }
+ }
    
 .toggle__input {
 	clip: rect(0 0 0 0);
@@ -112,12 +116,12 @@ body {
 
 .toggle-track {
 	background: var(--track-background);
-	border: 1px solid var(--track-border);
+	border: 1px solid var(--dark);
 	border-radius: 100px;
 	cursor: pointer;
 	display: flex;
 	height: var(--track-height);
-	margin-right: 12px;
+	margin-right: 8px;
 	position: relative;
 	width: var(--track-width);
 }
@@ -162,6 +166,51 @@ body {
 }
 
 .color-picker input {
-	min-width: 50px;
+	min-width: 62px;
+	border-color: var(--dark);
+}
+
+button {
+	--button-background: transparent;
+	--text-base: var(--darkgray);
+	--text-hover: var(--light);
+	
+	all: unset;
+	color: var(--text-base);
+	font-size: 16px;
+	font-weight: 600;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	text-align: center;
+	padding: 6px;
+	margin-top: 24px;
+	max-width: 100%;
+	width: 100%;
+	background-color: var(--button-background);
+	background-clip: padding-box;
+	border: 5px solid var(--text-base);
+	border-radius: 2em;
+	cursor: pointer;
+	box-sizing: border-box;
+	
+	position: relative;
+	transition: 0.25s ease-out;
+	
+	&:hover,
+	&:focus {
+		color: var(--text-hover);
+		border-color: transparent;
+		background-color: var(--darkgray);
+		
+		&::before,
+		&::after {
+			transform: none;
+			opacity: 1;
+		}
+	}
+}
+
+.hidden {
+	display: none;
 }
 

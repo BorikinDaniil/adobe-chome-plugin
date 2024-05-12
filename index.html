@@ -11,9 +11,9 @@
 </head>
 
 <body>
-<h1>Styles settings</h1>
+<h1>Settings</h1>
 
-<h3>General styles</h3>
+<h2>General</h2>
 <div class="select-label">Font size</div>
 <div class="select">
     <select id="size-select">
@@ -44,19 +44,23 @@
 					</span>
 				</span>
 			</span>
-    Enable verification
+    Enable validation
 </label>
 
-<h3>Verification Colors</h3>
+<h2>Validation Colors</h2>
 
 <div class="color-picker">
     <input type="color" id="warning-color" name="warningColor" />
-    <label class="toggle-label" for="warning-color">Unequal margin/padding ex. 9 and 8</label>
+    <label class="toggle-label" for="warning-color">Unequal margin/padding (ex. 9 and 8)</label>
 </div>
 
 <div class="color-picker">
     <input type="color" id="error-color" name="errorColor" />
-    <label class="toggle-label" for="error-color">Decimal eg 10.56</label>
+    <label class="toggle-label" for="error-color">Decimal (ex. 10.56)</label>
+</div>
+
+<div>
+    <button id="reset-button" >RESET TO DEFAULT</button>
 </div>
 </body>
 </html>
