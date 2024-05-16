@@ -1,0 +1,11 @@
+.info-popup {
+	padding: 12px;
+	margin: 0;
+	min-width: 215px;
+	background-color: #e5efe9;
+	border: 2px solid #121943;
+	font-size: 14px;
+	line-height: 16px;
+	font-weight: 600;
+	box-sizing: border-box;
+}

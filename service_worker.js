@@ -3,12 +3,12 @@
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
   const url = tab && tab.url
 
-  if (!url) return
+  if (!url || !tab.selected) return
 
   if (/^https:\/\/xd.adobe.com/.test(`https://${tab.url.split('/')[2]}`)) {
     chrome.action.setPopup({ popup: "./index.html"})
   } else {
-    chrome.action.setPopup({ popup: "" })
+    chrome.action.setPopup({ popup: "./info.html" })
   }
 });
 
@@ -18,16 +18,16 @@ async function getCurrentTabInfo() {
 
     const url = tabInfo && tabInfo[0] && tabInfo[0].url
 
-    if (!url) return
+    if (!url ||  !tabInfo[0].selected) return
 
     if (/^https:\/\/xd.adobe.com/.test(`https://${url.split('/')[2]}`)) {
       chrome.action.setPopup({ popup: "./index.html"})
     } else {
-      chrome.action.setPopup({ popup: "" })
+      chrome.action.setPopup({ popup: "./info.html" })
     }
   } catch (error) {
     console.log("An error occured!")
   }
 }
 
-chrome.tabs.onActivated.addListener(() => getCurrentTabInfo());
+chrome.tabs.onActivated.addListener(() => getCurrentTabInfo())

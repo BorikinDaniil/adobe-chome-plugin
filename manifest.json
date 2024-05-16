@@ -10,6 +10,9 @@
     "storage",
     "tabs"
   ],
+  "host_permissions": [
+    "https://*.xd.adobe.com/*"
+  ],
   "background": {
     "service_worker": "service_worker.js",
     "type": "module"
@@ -24,5 +27,10 @@
       "css": ["adobe-styles.css"],
       "js": ["script.js"]
     }
-  ]
+  ],
+  "icons": {
+    "16": "16.png",
+    "48": "48.png",
+    "128": "128.png"
+  }
 }
