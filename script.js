@@ -13,6 +13,15 @@ let textColor = defaultTextColor
 let fontSize = defaultFontSize
 let isTipsEnable = false
 
+const yCoefficient = {
+  '14': 0,
+  '15': -1,
+  '16': -1,
+  '17': -1.5,
+  '18': -2,
+
+}
+
 const onElementChange = (ignoreFormatted = false) => {
   const svgEl = sizeDrawer.children && sizeDrawer.children.length && sizeDrawer.children.item(0)
 
@@ -69,7 +78,8 @@ const onElementChange = (ignoreFormatted = false) => {
       const heightDif =  Math.floor(+formattedHeight - height + 2)
 
       const formattedX = (x - (withDif / 4)).toString()
-      const formattedY = (y - (heightDif / 2)).toString()
+      const formattedY = (y - (heightDif / 2) + yCoefficient[fontSize]).toString()
+
       el.setAttribute('width', formattedWidth)
       el.setAttribute('height', formattedHeight)
 
