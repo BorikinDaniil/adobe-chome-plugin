@@ -1,9 +1,9 @@
 {
-  "name": "Adobe Styles",
+  "name": "Adobe XD Helper",
   "version": "1.0.0",
-  "description": "This is an extension to change adobe styles",
+  "description": "This is an extension to change Adobe XD default styles",
   "manifest_version": 3,
-  "author": "Borikin D.",
+  "author": "Borikin Danylo",
   "permissions": [
     "activeTab",
     "contextMenus",
